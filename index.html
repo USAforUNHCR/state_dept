@@ -1,23 +1,34 @@
 ---
 layout: home
 ---
+<h1 class="home-intro">
+  Bridging the Education Gap for Syrian Refugee Children
+</h1>
 
-<div class="home">
+<form class="home-form">
+  <p class="form-text">
+    Add your information to be a part of the conversation, and help to solve the global refugee crisis.
+  </p>
+  <div class="form-group">
+    <label for="email">Email Address*</label>
+    <input class="form-control" type="email" id="email" required placeholder="email address">
+  </div>
+  <div class="form-group">
+    <label for="name">Name*</label>
+    <input class="form-control" type="text" id="name" required placeholder="name">
+  </div>
+  <div class="form-group">
+    <label for="organization">Organization</label>
+    <input class="form-control" type="text" id="organization" placeholder="organization">
+  </div>
+  
+  <div class="form-group">
+    <p class="project-text">
+      Do you have a project focused on helping refugees, tell us about it!
+    </p>
+    <label for="project">Project Description</label>
+    <input class="form-control" type="textarea" id="description" placeholder="project description">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>

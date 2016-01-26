@@ -1,1 +1,79 @@
-@import 'variables';
+.directory-title{
+  font-size: 4em;
+  color: white;
+  text-align: center;
+  padding: 1em;
+  background-color: mix(black, #429FD2, 20);
+  margin: 0;
+}
+
+.filters-title{
+  color: darken(grey, 20);
+  margin-left: 2em;
+  // margin-right: 0.5em;
+  display: inline;
+  vertical-align: middle;
+}
+
+
+.btn-filter{
+  color: #429FD2;
+  background-color: white;
+  border: solid 1px #429FD2;
+  transition: all 0.5s ease-in-out;
+  &:hover{
+    background-color: #429FD2;
+    color: white;
+  }
+  margin: 0.25em;
+}
+
+.search-form{
+  padding-top: 0.25em;
+  float: right;
+  & btn{
+    vertical-align: middle;
+    border: solid 1px grey;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+      background-color: grey;
+      color: white;
+    }
+  }
+  margin-right: 2em;
+}
+
+.home-intro{
+  background-color: #005B9A;
+  color: white;
+  text-align: center;
+  padding: 1.5em;
+  margin-top: 0px;
+}
+
+.home-form{
+  width: 60%;
+  @media screen and (max-width: 750px){
+    width: 100%;
+    border-radius: 0px;
+  }
+  background: lighten(#005B9A, 40%);
+  padding: 4em;
+  padding-top: 2em;
+  margin: auto;
+  margin-bottom: 2em;
+  border-radius: 0.8em;
+  .project-text{
+    font-size: 1.5em;
+    margin-top: 2em;
+  }
+  & button{
+    display: block;
+    margin: auto;
+  }
+}
+
+.form-text{
+  font-size: 2em;
+  font-weight: 500;
+}
