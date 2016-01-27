@@ -8,7 +8,6 @@ var directoryApp = angular.module('directoryApp',[],function($interpolateProvide
 directoryApp.controller('DirectoryCtrl',['$scope','$http', function($scope,$http){
   window.MY_SCOPE = $scope;
 
-  
   var url = 'https://spreadsheets.google.com/feeds/list/1dEDs3fMT_HZ5IaHBFxIsL0lh2cGQ4FO0VodrnBR0_9k/omubos6/public/values?alt=json';
   var parse = function(entry) {
     var name = entry['gsx$name']['$t'];
@@ -30,7 +29,12 @@ directoryApp.controller('DirectoryCtrl',['$scope','$http', function($scope,$http
     }
   });
 
-  
+  $scope.predicate = 'name';
+  $scope.reverse = false;
+  $scope.order = function(predicate) {
+    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+    $scope.predicate = predicate;
+  };
 
 }]);
 

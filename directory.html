@@ -6,14 +6,16 @@ title: Directory
 <h1 class="directory-title">Project Directory</h1>
 
 <div ng-app="directoryApp" ng-controller="DirectoryCtrl" class="directory">
-
   <div class="directory-nav">
-    <h2 class="filters-title">Filters</h2><button ng-click="order('organization')" class="btn btn-filter">Organizations</button><button class="btn btn-filter">Projects</button><button class="btn btn-filter">People</button>
+    <h2 class="filters-title">Views: </h2>
+    <button ng-click="order('organization'); predicate = false; summary = false; projects = false" class="btn btn-filter">Organizations</button>
+    <button ng-click="projects = true; summary = !summary; projects = true" class="btn btn-filter">Projects</button>
+    <button ng-click="order('name') predicate = false; summary = false" class="btn btn-filter">People</button>
     <form class="form-inline search-form">
       <div class="form-group">
-        <input type="text" class="form-control" id="directory-search" placeholder="search">
-      </div>
-      <btn class="btn btn-secondary"><i class="fa fa-search"></i></button>
+        <input ng-model="searchText" type="text" class="form-control" id="directory-search" placeholder="search"></input>
+      </div><i class="fa fa-search"></i>
+      
     </form>
   </div>
 
@@ -22,12 +24,15 @@ title: Directory
     <tr>
       <th class="ng-show">Name</th>
       <th class="ng-show">Organization</th>
-      <th class="ng-hide">Project Summary</th>
     </tr>
-    <tr ng-repeat="x in parsedEntries">
-      <td class="ng-show">[[ x.name ]]</td>
-      <td class="ng-show">[[ x.organization ]]</td>
-      <td class="ng-hide">[[ x.summary ]]</td>
+    <tr ng-repeat-start="x in parsedEntries | orderBy: predicate : reverse | filter: searchText " ng-click="summary = !summary">
+      <td ng-hide="">
+      <td ng-hide="projects" class="ng-show">[[ x.name ]]</td>
+      <td ng-hide="projects" class="ng-show">[[ x.organization ]]</td>
+    </tr>
+    <tr ng-repeat-end ng-show="summary && x.summary" class="ng-hide project-summary" ng-click="projects = false">
+      <td>Project Details</td>
+      <td>[[ x.summary ]]</td>
     </tr>
   </table>
 </div>
