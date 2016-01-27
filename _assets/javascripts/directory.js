@@ -28,13 +28,23 @@ directoryApp.controller('DirectoryCtrl',['$scope','$http', function($scope,$http
       $scope.parsedEntries.push(parse(content));
     }
   });
-
+  $scope.nameOrg = true;
+  $scope.nameOrgHead = true;
+  $scope.projDescHead = false;
+  $scope.projDesc = false;
+  $scope.projDescSide = false;
+  $scope.nameOrgSide = false;
   $scope.predicate = 'name';
   $scope.reverse = false;
   $scope.order = function(predicate) {
     $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
     $scope.predicate = predicate;
   };
+
+  $scope.hideProjDesc = function(){
+    $scope.projDesc = false;
+    $scope.projDescSide = false;
+  }
 
 }]);
 
