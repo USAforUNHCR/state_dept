@@ -3,8 +3,7 @@
 var directoryData = [  
     {name: 'Brian Reich',
      organization: 'The Hive', 
-     position: 'Project Director', 
-     email: 'info@projecthive.nyc', 
+     position: 'Project Director',  
      summary: 'The Hive is transforming the ways in which Americans engage with the refugee crisis. We are here as a special projects unit of USA for UNHCR. We’re changing the way Americans change the world.',
      needs: 'We can’t make change happen alone or over night – that is why we need you. We are bringing together the smartest and most innovative partners in the U.S. to help us reach, educate and engage American’s on today’s most pressing issue.',
      resources: 'We’re building knowledge about issues relating to refugees so that Americans will grow more committed to solving the refugee crisis. We’re using data science to identify and micro-target prospective supporters. And we’re developing strategic partnership opportunities for corporations and brands that change everything we know about philanthropy and advocacy.'
