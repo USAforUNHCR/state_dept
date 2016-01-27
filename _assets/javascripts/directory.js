@@ -41,3 +41,20 @@ function buildRow(data){
   }
   return newRow;
 }
+
+function splitter(inString){
+  var nameArr = inString.split(" ");
+  var firstName = nameArr[0];
+  var lastName = "";
+  for(var i =1 ; i < nameArr.length; i++){
+    lastName = lastName + " " + nameArr[i];
+  }
+  
+  var output = "first name is " + firstName;
+
+  if(lastName){
+    output = output + " last name is" + lastName;
+  } 
+
+  console.log(output);
+}
