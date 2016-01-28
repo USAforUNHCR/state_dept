@@ -1,3 +1,5 @@
+$highlight-font: 'Coustard', serif;
+
 .directory-title{
   font-size: 4em;
   color: white;
@@ -28,6 +30,10 @@
   margin: 0.25em;
 }
 
+.placeholder-content{
+  padding-top: 2em;
+}
+
 .search-form{
   padding-top: 0.25em;
   float: right;
@@ -47,26 +53,42 @@
   background-color: #005B9A;
   color: white;
   text-align: center;
-  padding: 1.5em;
+  padding: 1em;
   margin-top: 0px;
+  margin-bottom: 0.5em;
+  font-family: $highlight-font;
+  font-weight: 400;
 }
 
 .home-description{
   width: 80%;
-  max-width: 700px;
+  max-width: 1000px;
   border: solid 0.5em #005B9A;
+  border-radius: 0.3em;
   color: #005B9A;
-  padding: 5em;
-  font-size: 2em;
+  padding: 1.5em 2em 1.5em 2em;
+
+  font-size: 1.3em;
   margin: auto;
   @media screen and (max-width: 700px){
     border-left: none;
     border-right: none;
+    border-radius: 0px;
     width: 100%;
-    padding: 3em;
+    padding: 1.5em;
     padding-top: 1.5em;
     padding-bottom: 1.5em;
   }
+  & p{
+    padding-bottom: 0.5em;
+  }
+}
+
+.highlight{
+  font-size: 1.8em;
+  color: lighten(#8D2475, 5%);
+  font-family: $highlight-font;
+  font-weight: 400;
 }
 
 .home-form{

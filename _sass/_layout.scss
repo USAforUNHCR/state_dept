@@ -2,10 +2,10 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+
     min-height: 56px;
-    padding: 0 2vw 0 2vw;
+    padding: 1em 2vw 1em 2vw;
+    background-color: lighten(#005B9A, 60%);
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -96,7 +96,13 @@
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
-    padding: $spacing-unit 0;
+    margin-top: 3em;
+    background-color: lighten(#005B9A, 60%);
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding-top: 1em;
 }
 
 .footer-heading {
@@ -159,7 +165,15 @@
     }
 }
 
-
+.footer-link{
+    text-align: center;
+    margin: auto;
+    font-size: 2em;
+    & img{
+        height: 2em;
+        margin-left: 0.5em;
+    }
+}
 
 /**
  * Page content
