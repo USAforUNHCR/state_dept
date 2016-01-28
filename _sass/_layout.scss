@@ -1,10 +1,13 @@
+
+
 /**
  * Site header
  */
+
 .site-header {
 
     min-height: 56px;
-    padding: 1em 2vw 1em 2vw;
+    padding: 1em 2vw 5em 2vw;
     background-color: lighten(#005B9A, 60%);
 
     // Positioning context for the mobile navigation icon
@@ -96,11 +99,10 @@
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
-    margin-top: 3em;
     background-color: lighten(#005B9A, 60%);
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
     padding-top: 1em;
 }
