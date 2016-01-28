@@ -55,6 +55,7 @@ directoryControllers.controller('ProjDetailCtrl',['$scope','data', '$routeParams
 }]);
 
 
+
 angular.module('directoryApp').factory('data', function($http){
   var url = 'https://spreadsheets.google.com/feeds/list/1dEDs3fMT_HZ5IaHBFxIsL0lh2cGQ4FO0VodrnBR0_9k/omubos6/public/values?alt=json';
   var parse = function(entry) {
