@@ -38,6 +38,39 @@ directoryApp.controller('DirectoryCtrl',['$scope','$http', function($scope,$http
 
 }]);
 
+directoryApp.controller('PeopleCtrl',['$scope','data', function($scope, data){
+  window.PEOPLE_SCOPE = $scope;
+  $scope = data;
+}]);
+
+
+
+angular.module('directoryApp').factory('data', function($http){
+  var url = 'https://spreadsheets.google.com/feeds/list/1dEDs3fMT_HZ5IaHBFxIsL0lh2cGQ4FO0VodrnBR0_9k/omubos6/public/values?alt=json';
+  var parse = function(entry) {
+    var name = entry['gsx$name']['$t'];
+    var organization = entry['gsx$organization']['$t'];
+    var summary = entry['gsx$summary']['$t'];
+    return {
+      name: name,
+      organization: organization,
+      summary: summary
+    };
+  }
+  $http.get(url)
+  .success(function(response) {
+    var entries = response['feed']['entry'];
+    var parsedEntries = [];
+    for (key in entries){
+      var content = entries[key];
+      parsedEntries.push(parse(content));
+    }
+  });
+
+  return parsedEntries;
+
+});
+
 
 
 
