@@ -40,7 +40,7 @@ directoryApp.controller('DirectoryCtrl',['$scope','$http', function($scope,$http
 
 directoryApp.controller('PeopleCtrl',['$scope','data', function($scope, data){
   window.PEOPLE_SCOPE = $scope;
-  $scope = data;
+  $scope.parsedEntries = data;
 }]);
 
 
@@ -51,23 +51,32 @@ angular.module('directoryApp').factory('data', function($http){
     var name = entry['gsx$name']['$t'];
     var organization = entry['gsx$organization']['$t'];
     var summary = entry['gsx$summary']['$t'];
+    var id = entry.id;
     return {
+      id: id,
       name: name,
       organization: organization,
       summary: summary
     };
   }
-  $http.get(url)
-  .success(function(response) {
-    var entries = response['feed']['entry'];
-    var parsedEntries = [];
-    for (key in entries){
-      var content = entries[key];
-      parsedEntries.push(parse(content));
-    }
-  });
 
-  return parsedEntries;
+  function getEntries(){
+    var parsedEntries = [];
+    $http.get(url)
+    .success(function(response) {
+      var entries = response['feed']['entry'];
+      var i = 1;
+      for (key in entries){
+        var content = entries[key];
+        content.id = i;
+        parsedEntries.push(parse(content));
+        i ++;
+      }
+    });
+    return parsedEntries;
+  }
+
+  return getEntries();
 
 });
 
