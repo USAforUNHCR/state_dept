@@ -8,12 +8,34 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
-
-
+* {
+   box-sizing: border-box;
+}
+*:before,
+*:after {
+   box-sizing: border-box;
+}
+html,
+body {
+   height: 100%;
+   position: relative;
+}
+.wrapper {
+   min-height: 100vh; /* will cover the 100% of viewport */
+   overflow: hidden;
+   display: block;
+   position: relative;
+   padding-bottom: 100px; /* height of your footer */
+}
+.site-footer {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+}
 /**
  * Basic styling
  */
-body {
+ body {
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
@@ -147,30 +169,6 @@ pre {
         padding-left: 0;
     }
 }
-
-
-
-/**
- * Wrapper
- */
-.wrapper {
-    // max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    // max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-    margin-right: auto;
-    margin-left: auto;
-    // padding-right: $spacing-unit;
-    // padding-left: $spacing-unit;
-    @extend %clearfix;
-
-    @include media-query($on-laptop) {
-        // max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        // max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-        // padding-right: $spacing-unit / 2;
-        // padding-left: $spacing-unit / 2;
-    }
-}
-
-
 
 /**
  * Clearfix
