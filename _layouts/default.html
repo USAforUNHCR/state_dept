@@ -3,17 +3,20 @@
   <head>
 
     {% include head.html %}
+    {% stylesheet page %}
   
   </head>
 
   <body>
+    <div class="wrapper">
 
-    {% include header.html %}
+      {% include header.html %}
+        
+      {{ content }}
       
-    {{ content }}
-    
-    {% include footer.html %}
-
+      {% include footer.html %}
+      
+    </div>
   </body>
 
 </html>

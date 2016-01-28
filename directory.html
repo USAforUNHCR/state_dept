@@ -4,38 +4,17 @@ title: Directory
 ---
 
 <h1 class="directory-title">Project Directory</h1>
-<div ng-app="directoryApp" ng-controller="DirectoryCtrl" class="directory">
+
+<div ng-app="directoryApp">
+
   <div class="directory-nav">
-    <h2 class="filters-title">Views: </h2>
-    <button ng-click="order('organization'); nameOrg = true; nameOrgHead = true ; projDesc = false; projDescHead = false" class="btn btn-filter">Organizations</button>
-    <button ng-click="nameOrgHead = false; nameOrg = false; projDescHead = true; projDesc = true; projDescSide = false" class="btn btn-filter">Projects</button>
-    <button ng-click="order('name'); nameOrg = true; nameOrgHead = true" class="btn btn-filter">People</button>
+    <h2 class="filters-title">view: </h2><a href="/directory/#/orgs" class="btn btn-filter">Organizations</a><a href="/directory/#/projects" class="btn btn-filter">Projects</a><a href="/directory/#/people"class="btn btn-filter">People</a>
     <form class="form-inline search-form">
       <div class="form-group">
-        <input ng-model="searchText" type="text" class="form-control" id="directory-search" placeholder="search"></input>
-      </div><i class="fa fa-search"></i>
-      
+        <input ng-model="searchText" type="text" class="form-control" id="directory-search" placeholder="search">
+      </div>
     </form>
   </div>
 
-
-  <table class="table table-hover">
-    <pre>nameOrg = [[nameOrg]], nameOrgHead = [[nameOrgHead]], projDesc = [[projDesc]], projDescSide = [[projDescSide]]</pre>
-    <tr>
-      <th class="ng-hide" ng-show="projDeschead">Project Description</th>
-      <th class="ng-show" ng-hide="nameOrghead">Name</th>
-      <th class="ng-show" ng-hide="nameOrghead">Organization</th>
-    </tr>
-    <tr ng-repeat-start="x in parsedEntries | orderBy: predicate : reverse | filter: searchText " ng-click="projDesc = !projDesc ; projDescSide = !ProjDescSide">
-      <td ng-hide="!nameOrg" class="ng-show">[[ x.name ]]</td>
-      <td ng-hide="!nameOrg" class="ng-show">[[ x.organization ]]</td>
-    </tr>
-    <tr ng-show="projDesc && x.summary" class="ng-hide project-summary">
-      <td class="ng-hide" ng-show="projDescSide">Project Details</td>
-      <td>[[ x.summary ]]</td>
-    </tr>
-    <tr ng-repeat-end ng-show="nameOrgSide">
-      <td>Contact name: [[x.name]], Organization [[ x.organization ]]</td>
-    </tr>
-  </table>
+  <div ng-view></div>
 </div>

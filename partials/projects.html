@@ -1,0 +1,4 @@
+<div class="project-box" ng-repeat="project in projects | filter: searchText" ng-if="project.summary">
+  <p class="Summary">[[ project.summary]]</p>
+  <p class="org-contact"><span class="proj-highlight">Organization:</span> [[project.organization]]<span class="proj-highlight"><br>Contact:</span> [[project.name]]</p>
+</div>
