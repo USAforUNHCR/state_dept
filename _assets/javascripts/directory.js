@@ -1,46 +1,57 @@
 'use-strict'
 
-var directoryApp = angular.module('directoryApp',[],function($interpolateProvider){
+var directoryApp = angular.module('directoryApp',['ngRoute','directoryControllers'],function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 });
 
-directoryApp.controller('DirectoryCtrl',['$scope','$http', function($scope,$http){
-  window.MY_SCOPE = $scope;
 
-  var url = 'https://spreadsheets.google.com/feeds/list/1dEDs3fMT_HZ5IaHBFxIsL0lh2cGQ4FO0VodrnBR0_9k/omubos6/public/values?alt=json';
-  var parse = function(entry) {
-    var name = entry['gsx$name']['$t'];
-    var organization = entry['gsx$organization']['$t'];
-    var summary = entry['gsx$summary']['$t'];
-    return {
-      name: name,
-      organization: organization,
-      summary: summary
-    };
-  }
-  $http.get(url)
-  .success(function(response) {
-    var entries = response['feed']['entry'];
-    $scope.parsedEntries = [];
-    for (key in entries){
-      var content = entries[key];
-      $scope.parsedEntries.push(parse(content));
-    }
-  });
+directoryApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/people', {
+        templateUrl: '/partials/people.html',
+        controller: 'PeopleCtrl'
+      }).
+      when('/orgs', {
+        templateUrl: '/partials/orgs.html',
+        controller: 'OrgCtrl'
+      }).
+      when('/projects', {
+        templateUrl: '/partials/projects.html',
+        controller: 'ProjCtrl'
+      }).
+      when('/projects/:projectId', {
+        templateUrl: '/partials/project-detail.html',
+        controller: 'ProjDetailCtrl'
+      }).
+      otherwise({
+        redirectTo: '/people'
+      });
 
-  $scope.predicate = 'name';
-  $scope.reverse = false;
-  $scope.order = function(predicate) {
-    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-    $scope.predicate = predicate;
-  };
+  }]);
 
+directoryControllers = angular.module('directoryControllers', []);
+
+directoryControllers.controller('PeopleCtrl',['$scope','data', function($scope, data){
+  $scope.people = data;
+  $scope.orderProp = 'name';
 }]);
 
-directoryApp.controller('PeopleCtrl',['$scope','data', function($scope, data){
-  window.PEOPLE_SCOPE = $scope;
-  $scope.parsedEntries = data;
+directoryControllers.controller('OrgCtrl',['$scope','data', function($scope, data){
+  $scope.orgs = data;
+  $scope.orderProp = 'organization';
+  $scope.reverse = false;
+}]);
+
+directoryControllers.controller('ProjCtrl',['$scope','data', function($scope, data){
+  $scope.projects = data;
+}]);
+
+directoryControllers.controller('ProjDetailCtrl',['$scope','data', '$routeParams', function($scope, data, $routeParams){
+  $scope.projects = data;
+  $scope.projectId = $routeParams.projectId;
+  $scope.project = $scope.projects[$scope.projectId];
 }]);
 
 
@@ -65,7 +76,7 @@ angular.module('directoryApp').factory('data', function($http){
     $http.get(url)
     .success(function(response) {
       var entries = response['feed']['entry'];
-      var i = 1;
+      var i = 0;
       for (key in entries){
         var content = entries[key];
         content.id = i;
@@ -75,9 +86,7 @@ angular.module('directoryApp').factory('data', function($http){
     });
     return parsedEntries;
   }
-
   return getEntries();
-
 });
 
 

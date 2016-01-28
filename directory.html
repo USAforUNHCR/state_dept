@@ -8,16 +8,14 @@ title: Directory
 <div ng-app="directoryApp">
 
   <div class="directory-nav">
-    <h2 class="filters-title">Filters</h2><button class="btn btn-filter">Topics</button><button class="btn btn-filter">Organizations</button><button class="btn btn-filter">Projects</button><button class="btn btn-filter">People</button>
+    <h2 class="filters-title">view: </h2><a href="/directory/#/orgs" class="btn btn-filter">Organizations</a><a href="/directory/#/projects" class="btn btn-filter">Projects</a><a href="/directory/#/people"class="btn btn-filter">People</a>
     <form class="form-inline search-form">
       <div class="form-group">
-        <input type="text" class="form-control" id="directory-search" placeholder="search">
+        <input ng-model="searchText" type="text" class="form-control" id="directory-search" placeholder="search">
       </div>
-      <btn class="btn btn-secondary"><i class="fa fa-search"></i></button>
     </form>
   </div>
 
-  <div ng-controller="PeopleCtrl">
-  </div>
+  <div ng-view></div>
 
 </div>
