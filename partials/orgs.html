@@ -1,12 +1,12 @@
 <table class="table-hover people-table">
   <tr>
     <th ng-click="orderProp = 'organization' ">Organization</th>
-    <th ng-click="orderProp = 'name'; reverse = !reverse">Name</th>
+    <th ng-click="orderProp = 'lName'; reverse = !reverse">Name</th>
   </tr>
   <tr ng-repeat="org in orgs | orderBy: orderProp | filter : searchText ">
-    <td ng-if="org.summary"><a  href="/directory/#/projects/[[org.id]]">[[ org.organization ]]</a></td>  
-    <td ng-if="org.summary"><a  href="/directory/#/projects/[[org.id]]">[[ org.name ]]</a></td>
-    <td ng-if="!org.summary">[[org.organization]]</td>
-    <td ng-if="!org.summary">[[org.name]]</td>
+    <td class="col-left" ng-if="org.summary"><a  href="/directory/#/projects/[[org.id]]">[[ org.organization ]]</a></td>  
+    <td ng-if="org.summary"><a  href="/directory/#/projects/[[org.id]]">[[ org.fName ]] [[org.lName]] </a></td>
+    <td class="col-left" ng-if="!org.summary">[[org.organization]]</td>
+    <td ng-if="!org.summary">[[org.fName]] [[org.lName]]</td>
   </tr>
 </table>

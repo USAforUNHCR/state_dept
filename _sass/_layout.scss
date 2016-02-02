@@ -39,11 +39,25 @@
         color: $text-color;
         line-height: $base-line-height;
         font-size: 1.5em;
+        padding-bottom: 0.25em;
+        padding-top: 0.1em;
+
+        &:hover{
+            text-decoration: none;
+            color: #A12986;
+            border-bottom: 3px solid #A12986;    
+        }
 
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
             margin-left: 20px;
         }
+    }
+
+    .highlight-link{
+        border-top: 3px solid #A12986;
+        border-bottom: 3px solid #A12986;
+        color: #A12986;
     }
 
     @include media-query($on-palm) {

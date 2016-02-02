@@ -34,8 +34,9 @@ directoryApp.config(['$routeProvider',
 directoryControllers = angular.module('directoryControllers', []);
 
 directoryControllers.controller('PeopleCtrl',['$scope','data', function($scope, data){
+  window.PEOPLE_SCOPE = $scope;
   $scope.people = data;
-  $scope.orderProp = 'name';
+  $scope.orderProp = 'lName';
 }]);
 
 directoryControllers.controller('OrgCtrl',['$scope','data', function($scope, data){
@@ -59,13 +60,15 @@ directoryControllers.controller('ProjDetailCtrl',['$scope','data', '$routeParams
 angular.module('directoryApp').factory('data', function($http){
   var url = 'https://spreadsheets.google.com/feeds/list/1dEDs3fMT_HZ5IaHBFxIsL0lh2cGQ4FO0VodrnBR0_9k/omubos6/public/values?alt=json';
   var parse = function(entry) {
-    var name = entry['gsx$name']['$t'];
+    var fName = entry['gsx$fname']['$t'];
+    var lName = entry['gsx$lname']['$t'];
     var organization = entry['gsx$organization']['$t'];
     var summary = entry['gsx$summary']['$t'];
     var id = entry.id;
     return {
       id: id,
-      name: name,
+      fName: fName,
+      lName: lName,
       organization: organization,
       summary: summary
     };

@@ -47,3 +47,7 @@ $highlight-font: 'Coustard', serif;
     }
   }
 }
+
+.col-left{
+  border-right: solid 1px lighten(grey, 30%);
+}

@@ -1,13 +1,13 @@
 <table class="table-hover people-table">
   <tr>
-    <th ng-click="orderProp = 'name'; reverse = !reverse">Name</th>
+    <th ng-click="orderProp = 'lName'; reverse = !reverse">Name</th>
     <th ng-click="orderProp = 'organization' ">Organization</th>
   </tr>
   <tr ng-repeat="person in people | orderBy: orderProp | filter : searchText">
-    <td ng-if="person.summary"><a  href="/directory/#/projects/[[person.id]]">[[ person.name ]]</a></td>
+    <td class="col-left" ng-if="person.summary"><a  href="/directory/#/projects/[[person.id]]">[[ person.fName ]] [[person.lName]]</a></td>
     <td ng-if="person.summary"><a  href="/directory/#/projects/[[person.id]]">[[ person.organization ]]</a></td>  
 
-    <td ng-if="!person.summary">[[person.name]]</td>
+    <td class="col-left" ng-if="!person.summary">[[person.fName]] [[person.lName]]</td>
     <td ng-if="!person.summary">[[person.organization]]</td>
   </tr>
 </table>
