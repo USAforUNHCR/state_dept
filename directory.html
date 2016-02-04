@@ -3,14 +3,14 @@ layout: directory
 title: Directory
 ---
 
-<h1 class="directory-title">Project Directory</h1>
+<h2 class="directory-title">Project Directory</h2>
 
 <div ng-app="directoryApp">
 
   <div class="directory-nav">
-    <h2 class="filters-title">view: </h2><a href="/directory/#/orgs" class="btn btn-filter">Organizations</a><a href="/directory/#/projects" class="btn btn-filter">Projects</a><a href="/directory/#/people"class="btn btn-filter">People</a>
-    <form class="form-inline search-form">
-      <div class="form-group">
+    <a href="/directory/#/orgs" class="btn btn-filter">Organizations</a><a href="/directory/#/projects" class="btn btn-filter">Projects</a><a href="/directory/#/people"class="btn btn-filter">People</a>
+    <form >
+      <div>
         <input ng-model="searchText" type="text" class="form-control" id="directory-search" placeholder="search">
       </div>
     </form>

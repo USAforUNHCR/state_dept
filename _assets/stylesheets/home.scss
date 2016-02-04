@@ -117,3 +117,70 @@ $highlight-font: 'Coustard', serif;
   font-size: 2em;
   font-weight: 500;
 }
+
+.contact-intro{
+  font-family: $highlight-font;
+  font-size: 1.5em;
+  padding: 2em;
+  text-align: center;
+  border: 0.15em solid lighten(#005B9A,20%);
+  max-width: 600px;
+  margin: auto;
+  margin-top: 1.5em;
+  @media screen and (max-width: 600px){
+    border-left: none;
+    border-right: none;
+  }
+}
+
+.form-wrapper{
+  text-align: center;
+  width: 100%;
+  background-color: lighten(#8D2475, 63%);
+  max-width: 1000px;
+  min-width: 300px;
+  margin: auto;
+  margin-top: 1.5em;
+  padding-top: 1.5em;
+  & form{
+    padding: 2em;
+    margin: auto;
+    width: 60%;
+    min-width: 350px;
+    @media screen and (max-width: 700px){
+      padding: 0.5em;
+    }
+    & label{
+      text-align: left;
+      width: 35%;
+      // margin-right: 1em;
+    }
+    & select, input, textarea{
+      width: 50%;
+      float: right;
+    }
+    & textarea{
+      height: 4em;
+    }
+    & select{
+      vertical-align: bottom;
+    }
+    
+    & [type="submit"]{
+      margin-top: 1.5em;
+      display: block;
+      float: none;
+      margin: auto;
+      width: auto;
+      font-size: 1.5em;
+      background-color: #429FD2;
+      border: 2px solid #429FD2;
+      color: white;
+      transition: all 0.2s ease-in-out;
+      &:hover{
+        color: #429FD2;
+        background-color: white;
+      }
+    }
+  }
+  }

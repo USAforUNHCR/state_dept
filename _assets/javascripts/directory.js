@@ -26,7 +26,7 @@ directoryApp.config(['$routeProvider',
         controller: 'ProjDetailCtrl'
       }).
       otherwise({
-        redirectTo: '/people'
+        redirectTo: '/projects'
       });
 
   }]);
@@ -45,14 +45,13 @@ directoryControllers.controller('OrgCtrl',['$scope','data', function($scope, dat
   $scope.reverse = false;
 }]);
 
-directoryControllers.controller('ProjCtrl',['$scope','data', function($scope, data){
-  $scope.projects = data;
+directoryControllers.controller('ProjCtrl',['$scope','projects', function($scope, projects){
+  $scope.projects = projects;
 }]);
 
-directoryControllers.controller('ProjDetailCtrl',['$scope','data', '$routeParams', function($scope, data, $routeParams){
-  $scope.projects = data;
+directoryControllers.controller('ProjDetailCtrl',['$scope', '$routeParams', function($scope, $routeParams){
   $scope.projectId = $routeParams.projectId;
-  $scope.project = $scope.projects[$scope.projectId];
+  $scope.partialPath = "/projects/project" + $scope.projectId + ".html";
 }]);
 
 
@@ -91,9 +90,6 @@ angular.module('directoryApp').factory('data', function($http){
   }
   return getEntries();
 });
-
-
-
 
 
 

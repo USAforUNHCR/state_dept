@@ -1,4 +1,52 @@
 <div class="project-box">
-  <p class="project-summary">[[ project.summary]]</p>
-  <p class="org-contact"><span class="proj-highlight">Organization:</span> [[project.organization]]<span class="proj-highlight"><br>Contact:</span> [[project.name]]</p>
+  <ng-include src="partialPath">
+  </ng-include>
+</div>
+<div class="form-wrapper">
+  <p ng-hide="hideform" class="form-intro">
+    Have a project update, or want to support this initiative?<br> Fill out the form below.
+  </p>
+  <p class="form-intro" ng-show="hideform">
+    Thanks for the submission.
+  </p>
+
+  <form ng-hide="hideform" class="form-horizontal update-form" action="https://docs.google.com/forms/d/1qWoGxeJQnUBBVUTMK8uTX9w3WqWK4cqdVmpa3mnUvto/formResponse" method="POST" id="ss-form" target="_blank" onsubmit="">
+    <div class="form-group">
+      <label for="entry_1103448962">Name*</label>
+      <input required type="text" name="entry.1103448962" value="" class="ss-q-short" id="entry_1103448962" dir="auto" aria-label="Name   " title="">
+    </div>
+
+    <div class="form-group">
+      <label for="entry_457249037">Email*</label>
+      <input required type="text" name="entry.457249037" value="" class="ss-q-short" id="entry_457249037" dir="auto" aria-label="Email Address   " title="">
+    </div>
+
+    <div class="form-group">
+      <label for="entry_1746125171">Organization</label>
+      <input type="text" name="entry.1746125171" value="" class="ss-q-short" id="entry_1746125171" dir="auto" aria-label="Organization   " title="">
+    </div>
+    <div class="form-group">
+      <label for="entry_1267335566">Adding an update or supporting the project?</label>
+      <select name="entry.1267335566" id="entry_1267335566" aria-label="Do you want to provide an update or support?  "><option value=""></option>
+      <option value="Update">Update</option> <option value="Support">Support</option></select>
+    </div>
+
+    <div class="form-group">
+      <label for="entry_1297178674">Enter your update details or brief description of why you would like to join this project</label>
+      <textarea name="entry.1297178674" rows="8" cols="0" class="ss-q-long" id="entry_1297178674" dir="auto" aria-label="If you selected 'provide an update' enter details in this field.   "></textarea>
+    </div>
+
+    <input type="hidden" type="text" name="entry.1090500344" value="[[projectId]]" class="ss-q-short" id="entry_1090500344" dir="auto" aria-label="id  " title="">
+
+    <input type="hidden" name="draftResponse" value="[,,&quot;-6549462864384410478&quot;]
+    ">
+    <input type="hidden" name="pageHistory" value="0">
+
+    <input type="hidden" name="fvv" value="0">
+
+
+    <input type="hidden" name="fbzx" value="-6549462864384410478">
+
+    <input type="submit" ng-click="hideform = true" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action ">
+  </form>
 </div>

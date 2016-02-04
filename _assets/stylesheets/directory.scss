@@ -2,6 +2,33 @@ $highlight-font: 'Coustard', serif;
 
 .directory-nav{
   padding-top: 1.5em;
+  & .filters-title{
+    font-size: 1.5em;
+    @media screen and (max-width: 700px){
+      margin-left: 0.5em;  
+    }
+  }
+  @media screen and (max-width: 700px){
+    padding: 0.25em;
+    & button{
+      font-size: 0.25em;
+    }
+  }
+  & .btn{
+    @media screen and (max-width: 700px){
+      font-size: 0.75em;
+    }
+  }
+  & form{
+    float: right;
+    @media screen and (max-width: 700px){
+      font-size: 0.45em;
+      
+      margin: auto;
+      margin-bottom: 1em;
+      width: 35%;
+    }
+  }
 }
 
 .people-table{
@@ -27,27 +54,56 @@ $highlight-font: 'Coustard', serif;
 
 .directory-title{
   font-family: $highlight-font;
+  font-size: 2em;
+  padding: 0.25em;
 }
 
 .project-box{
   width: 80%;
   margin: auto;
-  margin-top: 2em;
+  margin-top: 1em;
   padding: 1.5em;
   padding-top: 0.8em;
   font-size: 1.5em;
-  border: 0.5em solid #429FD2; 
-  border-radius: 1em;
-  & .project-summary{
-
-  }
-  & .org-contact{
-    & .proj-highlight{
-      font-family: $highlight-font;
-    }
+  border: 0.15em solid #429FD2; 
+  border-radius: 0.25em;
+  @media screen and (max-width: 700px){
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    padding: 0.3em;
+    font-size: 1em;
   }
 }
 
 .col-left{
   border-right: solid 1px lighten(grey, 30%);
+}
+
+.track-filters{
+  text-align: center;
+  padding-top: 1em;
+  width: 100%;
+  & span{
+    font-size: 0.75em;
+    font-weight: 700;
+    margin-left: 0.5em;
+    @media screen and (max-width: 700px){
+      display: none;
+    }
+  }
+  & button{
+    display: inline-block;
+    margin-right: 0.5em;
+    background-color: white;
+    color: lighten(#8D2475, 5%);
+    border-radius: 3px;
+    border: solid 2px lighten(#8D2475, 5%);
+    transition: all .2s ease-in-out;
+    &:hover{
+      background-color: lighten(#8D2475, 5%);
+      color: white;
+    }
+  }
 }

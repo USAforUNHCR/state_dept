@@ -4,9 +4,7 @@
     <th ng-click="orderProp = 'lName'; reverse = !reverse">Name</th>
   </tr>
   <tr ng-repeat="org in orgs | orderBy: orderProp | filter : searchText ">
-    <td class="col-left" ng-if="org.summary"><a  href="/directory/#/projects/[[org.id]]">[[ org.organization ]]</a></td>  
-    <td ng-if="org.summary"><a  href="/directory/#/projects/[[org.id]]">[[ org.fName ]] [[org.lName]] </a></td>
-    <td class="col-left" ng-if="!org.summary">[[org.organization]]</td>
-    <td ng-if="!org.summary">[[org.fName]] [[org.lName]]</td>
+    <td class="col-left">[[org.organization]]</td>
+    <td>[[org.fName]] [[org.lName]]</td>
   </tr>
 </table>

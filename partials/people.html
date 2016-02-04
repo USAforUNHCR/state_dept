@@ -4,10 +4,7 @@
     <th ng-click="orderProp = 'organization' ">Organization</th>
   </tr>
   <tr ng-repeat="person in people | orderBy: orderProp | filter : searchText">
-    <td class="col-left" ng-if="person.summary"><a  href="/directory/#/projects/[[person.id]]">[[ person.fName ]] [[person.lName]]</a></td>
-    <td ng-if="person.summary"><a  href="/directory/#/projects/[[person.id]]">[[ person.organization ]]</a></td>  
-
-    <td class="col-left" ng-if="!person.summary">[[person.fName]] [[person.lName]]</td>
-    <td ng-if="!person.summary">[[person.organization]]</td>
+    <td class="col-left">[[person.fName]] [[person.lName]]</td>
+    <td >[[person.organization]]</td>
   </tr>
 </table>
