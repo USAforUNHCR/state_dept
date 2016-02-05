@@ -1,0 +1,15 @@
+<div class="track-filters">
+  
+  <span class="tracks-title">TRACKS:</span>
+  <button ng-click="track = 'Formal Education'">Formal Education</button>
+  <button ng-click="track = 'Non-Formal Education'">Non-Formal Education</button><button ng-click="track = 'Language'">Language</button><button ng-click="track = 'Enrollment Barriers'">Enrollment Barriers</button>
+  <input ng-model="searchText" type="text" class="form-control" id="directory-search" placeholder="search">
+</div>
+<div class="project-box" ng-repeat="project in projects | filter:track:true | filter:searchText">
+  <p class="Title"><b>Solution:</b> [[ project.title]]</p>
+  <p class="track"><b>Track:</b> [[project.track]]</p>
+  <p class="partners">
+    <b>Potential Partners:</b> <span ng-repeat="partner in project.partners">[[ partner ]]<span ng-if="!$last">, </span></span> 
+  </p>
+    <a ng-href="/directory/#/projects/[[project.id]]">More Details...</a>
+</div>

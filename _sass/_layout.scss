@@ -7,7 +7,7 @@
 .site-header {
 
     min-height: 56px;
-    padding: 1em 2vw 5em 2vw;
+    padding: 1em 2vw 0px 2vw;
     background-color: lighten(#005B9A, 60%);
 
     // Positioning context for the mobile navigation icon
@@ -16,7 +16,6 @@
 
 .site-title {
     font-size: 26px;
-    line-height: 56px;
     letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
@@ -29,7 +28,7 @@
 
 .site-nav {
     float: right;
-    line-height: 56px;
+    // line-height: 56px;
 
     .menu-icon {
         display: none;
@@ -38,15 +37,32 @@
     .page-link {
         color: $text-color;
         line-height: $base-line-height;
-        font-size: 1.5em;
+        // font-size: 1em;
+        padding: 0.5em;
+        // padding-bottom: 0.25em;
+        // padding-top: 0.1em;
+        transition: all 0.2s ease-in-out;
+        border-radius: 5px 5px 0px 0px;
+        &:hover{
+            text-decoration: none;
+            color: #A12986;
+            border-bottom: 0.5rem solid #A12986;
+        }
 
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
-            margin-left: 20px;
+            margin-left: 0.5rem;
         }
     }
 
-    @include media-query($on-palm) {
+    .highlight-link{
+        // border-top: 3px solid #A12986;
+        border-bottom: 0.5rem solid #A12986;
+        color: #A12986;
+        background-color: lighten(#005B9A, 50%);
+    }
+
+    @include media-query(1200px) {
         position: absolute;
         top: 9px;
         right: 30px;
@@ -176,7 +192,6 @@
         margin-left: 0.5em;
     }
 }
-
 /**
  * Page content
  */

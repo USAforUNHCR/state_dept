@@ -1,60 +1,117 @@
 'use-strict'
 
-var directoryData = [  
-    {name: 'Brian Reich',
-     organization: 'The Hive', 
-     position: 'Project Director', 
-     email: 'info@projecthive.nyc', 
-     summary: 'The Hive is transforming the ways in which Americans engage with the refugee crisis. We are here as a special projects unit of USA for UNHCR. We’re changing the way Americans change the world.',
-     needs: 'We can’t make change happen alone or over night – that is why we need you. We are bringing together the smartest and most innovative partners in the U.S. to help us reach, educate and engage American’s on today’s most pressing issue.',
-     resources: 'We’re building knowledge about issues relating to refugees so that Americans will grow more committed to solving the refugee crisis. We’re using data science to identify and micro-target prospective supporters. And we’re developing strategic partnership opportunities for corporations and brands that change everything we know about philanthropy and advocacy.'
-   }
-]
-
-var tableRow = {};
-
-$(document).ready(function(){
-  $('table').tablesorter();
-  tableRow = $('.directory-row').detach();
-  populateTable();
+var directoryApp = angular.module('directoryApp',['ngRoute','directoryControllers'],function($interpolateProvider){
+  $interpolateProvider.startSymbol('[[');
+  $interpolateProvider.endSymbol(']]');
 });
 
-function populateTable(){
-  for(var i = 0; i < directoryData.length ; i++){
-    var row = buildRow(directoryData[i]);
-    $('tbody').append(row);
-    $("table").trigger("update"); 
-    // set sorting column and direction, this will sort on the first and third column 
-    var sorting = [[2,1],[0,0]]; 
-    // sort on the first column 
-    $("table").trigger("sorton",[sorting]); 
-  }
-}
 
-function buildRow(data){
-  var newRow = tableRow.clone();
-  for(var property in data){
-    if (data.hasOwnProperty(property)){
-      newRow.find('.'+ property).html(data[property]);
-      debugger;
-    }
-  }
-  return newRow;
-}
+directoryApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/people', {
+        templateUrl: '/partials/people.html',
+        controller: 'PeopleCtrl'
+      }).
+      when('/orgs', {
+        templateUrl: '/partials/orgs.html',
+        controller: 'OrgCtrl'
+      }).
+      when('/projects', {
+        templateUrl: '/partials/projects.html',
+        controller: 'ProjCtrl'
+      }).
+      when('/projects/:projectId', {
+        templateUrl: '/partials/project-detail.html',
+        controller: 'ProjDetailCtrl'
+      }).
+      when('/person/:personId', {
+        templateUrl: '/partials/person.html',
+        controller: 'PersonCtrl'
+      }).
+      otherwise({
+        redirectTo: '/projects'
+      });
 
-function splitter(inString){
-  var nameArr = inString.split(" ");
-  var firstName = nameArr[0];
-  var lastName = "";
-  for(var i =1 ; i < nameArr.length; i++){
-    lastName = lastName + " " + nameArr[i];
-  }
+  }]);
+
+directoryControllers = angular.module('directoryControllers', []);
+
+directoryControllers.controller('PeopleCtrl',['$scope','data', function($scope, data){
+  highlightActive();
+  window.PEOPLE_SCOPE = $scope;
+  $scope.people = data;
+  $scope.orderProp = 'lName';
   
-  var output = "first name is " + firstName;
+}]);
 
-  if(lastName){
-    output = output + " last name is" + lastName;
-  } 
+directoryControllers.controller('PersonCtrl',['$scope','data', '$routeParams', function($scope, data, $routeParams){
+  window.PERSON_SCOPE = $scope; 
+  $scope.personId = $routeParams.personId;
+  $scope.people = data;
+  $scope.person = $scope.people[$scope.personId];
+}]);
 
-  console.log(output);
-}
+directoryControllers.controller('OrgCtrl',['$scope','data', function($scope, data){
+  $scope.orgs = data;
+  $scope.orderProp = 'organization';
+  $scope.reverse = false;
+}]);
+
+directoryControllers.controller('ProjCtrl',['$scope','projects', function($scope, projects){
+  highlightActive();
+  $scope.projects = projects;
+}]);
+
+directoryControllers.controller('ProjDetailCtrl',['$scope', '$routeParams', function($scope, $routeParams){
+  $scope.projectId = $routeParams.projectId;
+  $scope.partialPath = "/projects/project" + $scope.projectId + ".html";
+}]);
+
+
+
+angular.module('directoryApp').factory('data', function($http){
+  var url = 'https://spreadsheets.google.com/feeds/list/1dEDs3fMT_HZ5IaHBFxIsL0lh2cGQ4FO0VodrnBR0_9k/omubos6/public/values?alt=json';
+  var parse = function(entry) {
+    var fName = entry['gsx$fname']['$t'];
+    var lName = entry['gsx$lname']['$t'];
+    var organization = entry['gsx$organization']['$t'];
+    var summary = entry['gsx$summary']['$t'];
+    var id = entry.id;
+    return {
+      id: id,
+      fName: fName,
+      lName: lName,
+      organization: organization,
+      summary: summary
+    };
+  }
+
+  function getEntries(){
+    var parsedEntries = [];
+    $http.get(url)
+    .success(function(response) {
+      var entries = response['feed']['entry'];
+      var i = 0;
+      for (key in entries){
+        var content = entries[key];
+        content.id = i;
+        parsedEntries.push(parse(content));
+        i ++;
+      }
+    });
+    return parsedEntries;
+  }
+  return getEntries();
+});
+
+
+
+
+
+
+
+
+
+
+
