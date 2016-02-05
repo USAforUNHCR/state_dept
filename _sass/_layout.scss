@@ -62,7 +62,7 @@
         background-color: lighten(#005B9A, 50%);
     }
 
-    @include media-query($on-palm) {
+    @include media-query(1200px) {
         position: absolute;
         top: 9px;
         right: 30px;

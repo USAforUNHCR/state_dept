@@ -25,6 +25,10 @@ directoryApp.config(['$routeProvider',
         templateUrl: '/partials/project-detail.html',
         controller: 'ProjDetailCtrl'
       }).
+      when('/person/:personId', {
+        templateUrl: '/partials/person.html',
+        controller: 'PersonCtrl'
+      }).
       otherwise({
         redirectTo: '/projects'
       });
@@ -34,9 +38,18 @@ directoryApp.config(['$routeProvider',
 directoryControllers = angular.module('directoryControllers', []);
 
 directoryControllers.controller('PeopleCtrl',['$scope','data', function($scope, data){
+  highlightActive();
   window.PEOPLE_SCOPE = $scope;
   $scope.people = data;
   $scope.orderProp = 'lName';
+  
+}]);
+
+directoryControllers.controller('PersonCtrl',['$scope','data', '$routeParams', function($scope, data, $routeParams){
+  window.PERSON_SCOPE = $scope; 
+  $scope.personId = $routeParams.personId;
+  $scope.people = data;
+  $scope.person = $scope.people[$scope.personId];
 }]);
 
 directoryControllers.controller('OrgCtrl',['$scope','data', function($scope, data){
@@ -46,6 +59,7 @@ directoryControllers.controller('OrgCtrl',['$scope','data', function($scope, dat
 }]);
 
 directoryControllers.controller('ProjCtrl',['$scope','projects', function($scope, projects){
+  highlightActive();
   $scope.projects = projects;
 }]);
 

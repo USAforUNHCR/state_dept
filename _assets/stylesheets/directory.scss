@@ -98,6 +98,7 @@ $highlight-font: 'Coustard', serif;
     margin-right: 0.5em;
     background-color: white;
     color: lighten(#8D2475, 5%);
+    height: auto;
     border-radius: 3px;
     border: solid 2px lighten(#8D2475, 5%);
     transition: all .2s ease-in-out;
@@ -106,4 +107,20 @@ $highlight-font: 'Coustard', serif;
       color: white;
     }
   }
+  & input{
+    float: right;
+    width: 20%;
+    @media screen and (max-width: 600px){
+      display: block;
+      width: 50%;
+      float: none;
+      margin: auto;
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.people-search{
+  width: 50%;
+  margin: auto;
 }

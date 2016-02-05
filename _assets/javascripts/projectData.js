@@ -48,6 +48,20 @@ angular.module('directoryApp').factory('projects', function(){
       track: "Language",
       title: "Refugee Resource Hub Application and Site",
       partners: ["Universities", "Google", "UNHCR"]
+    },
+
+    { id: 7,
+      type: "headline",
+      track: "Enrollment Barriers",
+      title: "Mapping for Success",
+      partners: ["Yelp", "TaskRabbit", "Uber", "Airbnb"]
+    },
+
+    { id: 8,
+      type: "headline",
+      track: "Enrollment Barriers",
+      title: "Mapping Tool, Mobile Classroom, Homework App",
+      partners: ["Stanford", "Rethink Education"]
     }
   ]
 
