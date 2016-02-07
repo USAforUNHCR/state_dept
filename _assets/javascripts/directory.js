@@ -1,9 +1,22 @@
 'use-strict'
 
-var directoryApp = angular.module('directoryApp',['ngRoute','directoryControllers'],function($interpolateProvider){
+
+
+var directoryApp = angular.module('directoryApp',['ngRoute','directoryControllers','firebase'],function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 });
+
+directoryApp.run(["$rootScope", "$location", function($rootScope, $location) {
+$rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+  // We can catch the error thrown when the $requireAuth promise is rejected
+  // and redirect the user back to the home page
+  if (error === "AUTH_REQUIRED") {
+    $location.path("/login");
+  }
+});
+}]);
+
 
 
 directoryApp.config(['$routeProvider',
@@ -11,7 +24,12 @@ directoryApp.config(['$routeProvider',
     $routeProvider.
       when('/people', {
         templateUrl: '/partials/people.html',
-        controller: 'PeopleCtrl'
+        controller: 'PeopleCtrl',
+        resolve: {
+                    "currentAuth": ["auth", function(auth) {
+                        return auth.$requireAuth();
+                    }]
+        }
       }).
       when('/orgs', {
         templateUrl: '/partials/orgs.html',
@@ -27,7 +45,21 @@ directoryApp.config(['$routeProvider',
       }).
       when('/person/:personId', {
         templateUrl: '/partials/person.html',
-        controller: 'PersonCtrl'
+        controller: 'PersonCtrl',
+        resolve: {
+          "currentAuth": ['auth', function(auth) {
+            return auth.$requireAuth();
+          }]
+        }
+      }).
+      when('/login', {
+        templateUrl: '/partials/login.html',
+        controller: 'LoginCtrl',
+        resolve: {
+          "currentAuth" : ['auth', function(auth){
+            return auth.$waitForAuth();
+          }]
+        }
       }).
       otherwise({
         redirectTo: '/projects'
@@ -37,13 +69,35 @@ directoryApp.config(['$routeProvider',
 
 directoryControllers = angular.module('directoryControllers', []);
 
-directoryControllers.controller('PeopleCtrl',['$scope','data', function($scope, data){
+directoryControllers.controller('PeopleCtrl',['$scope','data','auth', function($scope, data, auth){
   highlightActive();
+
   window.PEOPLE_SCOPE = $scope;
   $scope.people = data;
   $scope.orderProp = 'lName';
   
+
 }]);
+
+directoryControllers.controller('LoginCtrl',['$scope','auth', '$location', function($scope,auth,$location){
+  $scope.authObj = auth;
+  $scope.password = null;
+
+  $scope.authorize = function(password){
+    $scope.error = null;
+    $scope.authObj.$authWithPassword({
+      "email": "user@refugeeedtechsolutions.com",
+      "password": password
+    }).
+    then(function(authData){
+      $location.path('/people');
+    }).
+    catch(function(error){
+      $scope.error = error;
+      console.log(error);
+    });
+  }
+}])
 
 directoryControllers.controller('PersonCtrl',['$scope','data', '$routeParams', function($scope, data, $routeParams){
   window.PERSON_SCOPE = $scope; 
@@ -70,40 +124,19 @@ directoryControllers.controller('ProjDetailCtrl',['$scope', '$routeParams', func
 
 
 
-angular.module('directoryApp').factory('data', function($http){
-  var url = 'https://spreadsheets.google.com/feeds/list/1dEDs3fMT_HZ5IaHBFxIsL0lh2cGQ4FO0VodrnBR0_9k/omubos6/public/values?alt=json';
-  var parse = function(entry) {
-    var fName = entry['gsx$fname']['$t'];
-    var lName = entry['gsx$lname']['$t'];
-    var organization = entry['gsx$organization']['$t'];
-    var summary = entry['gsx$summary']['$t'];
-    var id = entry.id;
-    return {
-      id: id,
-      fName: fName,
-      lName: lName,
-      organization: organization,
-      summary: summary
-    };
-  }
+angular.module('directoryApp').factory('data',['$firebaseArray', function($firebaseArray){
+  
+    var ref= new Firebase("https://intense-heat-9739.firebaseio.com/participants");
+  
+    var peopleArr = $firebaseArray(ref);
 
-  function getEntries(){
-    var parsedEntries = [];
-    $http.get(url)
-    .success(function(response) {
-      var entries = response['feed']['entry'];
-      var i = 0;
-      for (key in entries){
-        var content = entries[key];
-        content.id = i;
-        parsedEntries.push(parse(content));
-        i ++;
-      }
-    });
-    return parsedEntries;
-  }
-  return getEntries();
-});
+    return peopleArr;
+}]);
+
+angular.module('directoryApp').factory('auth',['$firebaseAuth',function($firebaseAuth){
+  var ref= new Firebase("https://intense-heat-9739.firebaseio.com");
+  return $firebaseAuth(ref);
+}]);
 
 
 
