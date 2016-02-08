@@ -1,11 +1,14 @@
+
+
 /**
  * Site header
  */
+
 .site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+
     min-height: 56px;
-    padding: 0 2vw 0 2vw;
+    padding: 1em 2vw 0px 2vw;
+    background-color: lighten(#005B9A, 60%);
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -13,7 +16,6 @@
 
 .site-title {
     font-size: 26px;
-    line-height: 56px;
     letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
@@ -26,7 +28,7 @@
 
 .site-nav {
     float: right;
-    line-height: 56px;
+    // line-height: 56px;
 
     .menu-icon {
         display: none;
@@ -35,14 +37,32 @@
     .page-link {
         color: $text-color;
         line-height: $base-line-height;
+        // font-size: 1em;
+        padding: 0.5em;
+        // padding-bottom: 0.25em;
+        // padding-top: 0.1em;
+        transition: all 0.2s ease-in-out;
+        border-radius: 5px 5px 0px 0px;
+        &:hover{
+            text-decoration: none;
+            color: #A12986;
+            border-bottom: 0.5rem solid #A12986;
+        }
 
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
-            margin-left: 20px;
+            margin-left: 0.5rem;
         }
     }
 
-    @include media-query($on-palm) {
+    .highlight-link{
+        // border-top: 3px solid #A12986;
+        border-bottom: 0.5rem solid #A12986;
+        color: #A12986;
+        background-color: lighten(#005B9A, 50%);
+    }
+
+    @include media-query(1200px) {
         position: absolute;
         top: 9px;
         right: 30px;
@@ -57,7 +77,8 @@
             width: 36px;
             height: 26px;
             line-height: 0;
-            padding-top: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             text-align: center;
 
             > svg {
@@ -94,7 +115,12 @@
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
-    padding: $spacing-unit 0;
+    background-color: lighten(#005B9A, 60%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 1em;
 }
 
 .footer-heading {
@@ -157,8 +183,15 @@
     }
 }
 
-
-
+.footer-link{
+    text-align: center;
+    margin: auto;
+    font-size: 1em;
+    & img{
+        height: 2.5em;
+        margin-left: 0.5em;
+    }
+}
 /**
  * Page content
  */

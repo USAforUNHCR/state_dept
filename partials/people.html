@@ -1,0 +1,19 @@
+<div class="directory-nav">
+      <div class="people-search">
+        <input ng-model="searchText" type="text" class="form-control" id="directory-search" placeholder="search">
+      </div>
+    </form>
+  </div>
+
+<table class="table-hover people-table">
+  <tr>
+    <th class="col-left" ng-click="orderProp = 'name'; reverse = !reverse">Name</th>
+    <th class="col-mid">Email Address</th>
+    <th ng-click="orderProp = 'organization' ">Organization</th>
+  </tr>
+  <tr ng-repeat="person in people | orderBy: orderProp | filter : searchText">
+    <td class="col-left"><a  href="/directory/#/person/[[person.$id]]">[[ person.fname ]] [[person.lname]]</a></td>
+    <td class="col-mid"><a href="mailto:[[person.email]]">[[person.email]]</td>
+    <td>[[person.org]]</td>
+  </tr>
+</table>

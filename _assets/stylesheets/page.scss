@@ -1,0 +1,36 @@
+$highlight-font: 'Coustard', serif;
+
+.agenda-pdf{
+  width: 100vw;
+  height: 88vh;
+}
+
+.pdf-wrapper{
+  width: 100vw;
+  height: 80vh;
+}
+
+.coming-soon-box{
+  width: 60%;
+  max-width: 1000px;
+  border: solid 0.25em #005B9A;
+  border-radius: 0.3em;
+  color: lighten(#8D2475, 5%);
+  padding: 1.5em 2em 1.5em 2em;
+  font-size: 1.3em;
+  margin: 2em auto;
+  @media screen and (max-width: 700px){
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    width: 100%;
+    padding: 1.5em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+  & p{
+    font-family: $highlight-font;
+    font-size: 2em;
+    text-align: center;
+  }
+}

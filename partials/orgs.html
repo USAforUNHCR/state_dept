@@ -1,0 +1,10 @@
+<table class="table-hover people-table">
+  <tr>
+    <th ng-click="orderProp = 'organization' ">Organization</th>
+    <th ng-click="orderProp = 'lName'; reverse = !reverse">Name</th>
+  </tr>
+  <tr ng-repeat="org in orgs | orderBy: orderProp | filter : searchText ">
+    <td class="col-left">[[org.organization]]</td>
+    <td>[[org.fName]] [[org.lName]]</td>
+  </tr>
+</table>
