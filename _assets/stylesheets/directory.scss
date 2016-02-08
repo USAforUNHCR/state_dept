@@ -79,6 +79,14 @@ $highlight-font: 'Coustard', serif;
 
 .col-left{
   border-right: solid 1px lighten(grey, 30%);
+
+}
+
+.col-mid{
+ border-right: solid 1px lighten(grey, 30%); 
+ @media screen and (max-width: 850px){
+  display: none !important;
+ }
 }
 
 .track-filters{
@@ -123,4 +131,29 @@ $highlight-font: 'Coustard', serif;
 .people-search{
   width: 50%;
   margin: auto;
+}
+
+.password-form{
+  text-align: center;
+  padding: 1.5em 0.5em 1.5em 0.5em;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 3px;
+  border: solid 2px lighten(#8D2475, 5%);
+  margin: auto;
+  margin-top: 2.5em;
+  
+  & label{
+    margin-right: 1em;
+  }
+  & input{
+    display: inline;
+  }
+  & button{
+    display: block;
+    margin: auto;
+    margin-top: 1em;
+    background-color: white;
+    border: 1px solid #429FD2;
+  }
 }

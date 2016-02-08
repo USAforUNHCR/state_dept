@@ -1,0 +1,6 @@
+<div class="password-form" ng-hide="auth">
+  <label>Enter password to continue:</label>
+  <input type="password" ng-model="password">
+  <button ng-click="authorize(password)">Submit</button>
+  <span ng-if="error != false">[[error]]</span>
+</div>
