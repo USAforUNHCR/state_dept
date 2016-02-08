@@ -2,7 +2,7 @@
 
 
 
-var directoryApp = angular.module('directoryApp',['ngRoute','directoryControllers','firebase'],function($interpolateProvider){
+var directoryApp = angular.module('directoryApp',['ngRoute','directoryControllers','firebase','ngSanitize'],function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 });
@@ -99,7 +99,7 @@ directoryControllers.controller('LoginCtrl',['$scope','auth', '$location', funct
   }
 }])
 
-directoryControllers.controller('PersonCtrl',['$scope','data', '$routeParams', function($scope, data, $routeParams){
+directoryControllers.controller('PersonCtrl',['$scope','data', '$routeParams', '$sanitize', function($scope, data, $routeParams, $sanitize){
   window.PERSON_SCOPE = $scope; 
   $scope.personId = $routeParams.personId;
   $scope.people = data;
