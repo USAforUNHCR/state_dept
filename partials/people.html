@@ -5,17 +5,16 @@
     </form>
   </div>
 
-
 <table class="table-hover people-table">
   <tr>
     <th ng-click="orderProp = 'name'; reverse = !reverse">Name</th>
     <th ng-click="orderProp = 'organization' ">Organization</th>
   </tr>
   <tr ng-repeat="person in people | orderBy: orderProp | filter : searchText">
-    <td class="col-left" ng-if="person.summary"><a  href="/directory/#/person/[[person.id]]">[[ person.fName ]] [[person.lName]]</a></td>
-    <td ng-if="person.summary"><a  href="/directory/#/person/[[person.id]]">[[ person.organization ]]</a></td>  
+    <td class="col-left" ng-if="person.summary"><a  href="/directory/#/person/[[person.$id]]">[[ person.fname ]] [[person.lname]]</a></td>
+    <td ng-if="person.summary"><a  href="/directory/#/person/[[person.$id]]">[[ person.org ]]</a></td>  
 
-    <td class="col-left" ng-if="!person.summary">[[ person.fName ]] [[person.lName]]</td>
-    <td ng-if="!person.summary">[[person.organization]]</td>
+    <td class="col-left" ng-if="!person.summary">[[ person.fname ]] [[person.lname]]</td>
+    <td ng-if="!person.summary">[[person.org]]</td>
   </tr>
 </table>
