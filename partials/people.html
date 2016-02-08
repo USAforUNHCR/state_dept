@@ -12,8 +12,7 @@
     <th ng-click="orderProp = 'organization' ">Organization</th>
   </tr>
   <tr ng-repeat="person in people | orderBy: orderProp | filter : searchText">
-    <td class="col-left" ng-if="person.summary"><a  href="/directory/#/person/[[person.$id]]">[[ person.fname ]] [[person.lname]]</a></td>
-    <td class="col-left" ng-if="!person.summary">[[ person.fname ]] [[person.lname]]</td>
+    <td class="col-left"><a  href="/directory/#/person/[[person.$id]]">[[ person.fname ]] [[person.lname]]</a></td>
     <td class="col-mid"><a href="mailto:[[person.email]]">[[person.email]]</td>
     <td>[[person.org]]</td>
   </tr>

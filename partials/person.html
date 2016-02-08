@@ -3,6 +3,6 @@
   <p class="org-contact">
   	<span class="proj-highlight">Name:</span> [[person.fname]] [[person.lname]]
   	<span class="proj-highlight"><br>Organization:</span> [[person.org]]
-    <span class="proj-highlight"><br>Email Address:</span> [[person.email]]</p>
-  <p ng-bind-html="person.summary" class="project-summary"></p>
+    <span class="proj-highlight"><br>Email Address:</span><a href="mailto:[[person.email]]"> [[person.email]]</a></p>
+  <p ng-if="person.summary" ng-bind-html="person.summary" class="project-summary"></p>
 </div>
