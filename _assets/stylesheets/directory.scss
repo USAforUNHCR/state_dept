@@ -79,10 +79,14 @@ $highlight-font: 'Coustard', serif;
 
 .col-left{
   border-right: solid 1px lighten(grey, 30%);
+
 }
 
 .col-mid{
  border-right: solid 1px lighten(grey, 30%); 
+ @media screen and (max-width: 850px){
+  display: none !important;
+ }
 }
 
 .track-filters{

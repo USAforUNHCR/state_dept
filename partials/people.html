@@ -7,8 +7,8 @@
 
 <table class="table-hover people-table">
   <tr>
-    <th ng-click="orderProp = 'name'; reverse = !reverse">Name</th>
-    <th>Email Address</th>
+    <th class="col-left" ng-click="orderProp = 'name'; reverse = !reverse">Name</th>
+    <th class="col-mid">Email Address</th>
     <th ng-click="orderProp = 'organization' ">Organization</th>
   </tr>
   <tr ng-repeat="person in people | orderBy: orderProp | filter : searchText">
